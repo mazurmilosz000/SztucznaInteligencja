@@ -44,7 +44,8 @@ for (x in 1:100) {
   cat("x", x, ": ", s)
   print("")
 }
-
-odchylenie = max(unlist(myList)) - min(unlist(myList))
+srednia = mean(unlist(myList))
+srednia
+odchylenie = sd(unlist(myList))
 odchylenie
 
