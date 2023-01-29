@@ -14,7 +14,6 @@ model = randomForest(Category~.,data=train)
 randomForest::varImpPlot(model,
                          sort=FALSE,
                          main="Variable Importance Plot")
-print(varimp(model))
 pred=predict(model,test)
 cm=table(pred,test$Category)
 cm
