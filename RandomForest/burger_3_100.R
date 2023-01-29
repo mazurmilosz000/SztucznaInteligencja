@@ -3,10 +3,11 @@ library(randomForest)
 
 data=read.csv("C:/Users/Milosz/Desktop/studia/3_rok/SI/burger-king-menu.csv", header=TRUE, stringsAsFactors=TRUE)
 data = data[,-1]
+x <- 1
 
 myList <- list()
-for (x in 1:100) {
-  idx=sample(2, length(data), replace = TRUE, prob = c(0.7, 0.3))
+while (x <= 100) {
+  idx=sample(2, length(data), replace = TRUE, prob = c(0.9, 0.1))
   idx
   train = data[idx == 1,]
   test = data[idx == 2,]
@@ -23,11 +24,18 @@ for (x in 1:100) {
   q = sum(diag(cm))/sum(cm)
   q
   
-  myList <- append(myList,q)
+  if (q != 'NaN'){
+    myList <- append(myList,q)
+    
+  } else {
+    x = x-1
+  }
   
-  
-  cat("x", x, ": ", q)
+  cat("x", x, ": ", q, q=='NaN')
   print("")
+  
+  x = x+1
+
 }
 srednia = mean(unlist(myList))
 srednia
